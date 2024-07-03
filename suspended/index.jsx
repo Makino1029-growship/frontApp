@@ -1,4 +1,4 @@
-import Page from "./Page";
+import Page from "../pages/employee/register";
 
 const Example = () => {
   return (

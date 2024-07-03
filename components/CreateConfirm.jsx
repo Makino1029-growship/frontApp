@@ -1,34 +1,43 @@
-import { useCreate } from "../context/Context";
-import { useRouter } from "next/router";
+import { useCreate } from "../hook/context";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import axios from "axios";
+import Typography from "@mui/material/Typography";
 
 const CreateConfirm = ({ onSaveError }) => {
-
-  //ルーター、社員情報state
-  const router = useRouter();
-  const employeeData = useCreate();
+  //社員情報state・ページstateの更新関数
+  const { employeeData, setPageState } = useCreate();
 
   //関数の宣言：登録するボタンを押した時の処理
   //成功 → DBに登録して登録完了ページへ
   //失敗 → エラーstateを変更し、登録ページに戻る
   const handleCreate = async () => {
     try {
-      await axios.post("http://localhost:8080/api/create", employeeData);
-      router.push("/?step=succeeded");
+      const response = await axios.post(
+        "http://localhost:8080/api/create",
+        employeeData
+      );
+
+      if (response.status === 200) {
+        onSaveError(response.status);
+        setPageState("succeeded");
+      } else {
+        onSaveError(response.status);
+        setPageState("create");
+      }
     } catch (error) {
       if (error.response && error.response.status) {
         onSaveError(error.response.status);
+        setPageState("create");
+      } else {
       }
-      router.push("/?step=create");
     }
   };
 
   //関数の宣言：戻るボタンを押したときの処理
   const handleReturn = () => {
-    router.push("/?step=create");
+    setPageState("create");
   };
 
   return (
@@ -42,12 +51,14 @@ const CreateConfirm = ({ onSaveError }) => {
           marginBottom: "3rem",
         }}
       >
-        <h3>▶社員情報登録確認</h3>
+        <Typography variant="h4">▶社員情報登録確認</Typography>
       </Box>
       {/* 入力された社員情報の表示　valueをstateで管理することで、値はすべて登録ページから引き継いでいる */}
       <Box sx={{ textAlign: "center" }}>
         <Box sx={{ marginBottom: "1rem" }}>
-          <h3>以下の内容で登録します。</h3>
+          <Box sx={{ textAlign: "center", marginBottom: "2rem" }}>
+            <Typography variant="h5">以下の内容で登録します。</Typography>
+          </Box>
           <TextField
             id="outlined-required"
             label="社員番号"

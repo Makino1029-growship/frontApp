@@ -1,27 +1,24 @@
-import { useCreate, useSetCreate } from "../context/Context";
+import { useCreate } from "../hook/context";
 import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { degreeOptions } from "../constant/degreeOption";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#ff0000", // 赤色を指定
+    },
+  },
+});
 
 const CreateEmployee = (errorStatus) => {
-  // 職位のプルダウンに表示する項目の設定
-  const degreeOptions = [
-    "Analyst",
-    "Consultant",
-    "Senior Consultant",
-    " Manager",
-    "Senior Manager",
-    "Director",
-    "CEO",
-  ];
-
-  // ルーター、社員情報State・更新関数の宣言
-  const router = useRouter();
-  const employeeData = useCreate();
-  const setEmployeeData = useSetCreate();
+  // 社員情報State・更新関数の宣言
+  const { employeeData, setEmployeeData, setPageState } = useCreate();
 
   // 数値入力項目のエラーチェック用のstate、更新関数の宣言
   const [inputNumErrorFlag, setinputNumErrorFlag] = useState(false);
@@ -40,7 +37,12 @@ const CreateEmployee = (errorStatus) => {
     setclickFlag(true);
 
     // バリデーション（数値チェック）
-    if (!isNaN(employeeData.employeeNum) && !isNaN(employeeData.tel)) {
+    if (
+      !isNaN(employeeData.employeeNum) &&
+      !isNaN(employeeData.tel) &&
+      employeeData.employeeNum.length === 5 &&
+      (employeeData.tel.length === 10 || employeeData.tel.length === 11)
+    ) {
       setinputNumErrorFlag(true);
     } else {
       setinputNumErrorFlag(false);
@@ -63,9 +65,9 @@ const CreateEmployee = (errorStatus) => {
   //バリデーションを突破した場合のみ次のページに進む
   useEffect(() => {
     if (inputNullFlag && inputNumErrorFlag) {
-      router.push("/?step=confirm");
+      setPageState("confirm")
     }
-  }, [inputNullFlag, inputNumErrorFlag, router]);
+  }, [inputNullFlag, inputNumErrorFlag]);
 
   //関数の宣言：テキストフィールドの値が変更されたときに実行
   const inputChange = (e, type) => {
@@ -86,7 +88,7 @@ const CreateEmployee = (errorStatus) => {
           marginBottom: "3rem",
         }}
       >
-        <h3>▶社員情報新規登録・編集</h3>
+        <Typography variant="h4">▶社員情報新規登録・編集</Typography>
       </Box>
 
       {/* システムエラー発生時のメッセージ　propsで受け取ったエラーステータスで表示/非表示を管理 */}
@@ -94,21 +96,36 @@ const CreateEmployee = (errorStatus) => {
         <Box sx={{ marginBottom: "1rem" }}>
           {errorStatus.errorStatus !== 200 &&
             errorStatus.errorStatus !== null && (
-              <p style={{ color: "red" }}>
-                エラーが発生しました。お手数ですが再度登録してください。
-              </p>
+              <Box sx={{ textAlign: "center" }}>
+                <ThemeProvider theme={theme}>
+                  <Typography variant="p" color="primary">
+                    エラーが発生しました。お手数ですが再度登録してください。
+                  </Typography>
+                </ThemeProvider>
+              </Box>
             )}
 
           {/* NULL項目がある場合のアラートメッセージ　フラグで表示/非表示を管理 */}
+
           {!inputNullFlag && clickFlag && (
-            <p style={{ color: "red" }}>未入力の項目があります。</p>
+            <Box sx={{ textAlign: "center" }}>
+              <ThemeProvider theme={theme}>
+                <Typography variant="p" color="primary">
+                  未入力の項目があります。
+                </Typography>
+              </ThemeProvider>
+            </Box>
           )}
 
           {/* 数値入力必須項目内にstringがある場合のアラートメッセージ　フラグで表示/非表示を管理 */}
           {!inputNumErrorFlag && clickFlag && (
-            <p style={{ color: "red" }}>
-              社員番号、電話番号は数値で入力してください
-            </p>
+            <Box sx={{ textAlign: "center" ,marginBottom: "2rem"}}>
+              <ThemeProvider theme={theme}>
+                <Typography variant="p" color="primary">
+                  社員番号：5桁、電話番号：10,11桁で数値を入力してください
+                </Typography>
+              </ThemeProvider>
+            </Box>
           )}
 
           {/* 社員情報入力項目 */}
