@@ -13,7 +13,7 @@ const CreateProvider = ({ children }) => {
   });
 
   //ページstateの宣言　初期値は新規登録ページに設定（後で変更予定）
-  const [pageState, setPageState] = useState("create");
+  const [pageState, setPageState] = useState("topPage");
 
   //コンポーネント間で共有するstateを設定
   const value = {

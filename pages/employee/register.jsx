@@ -3,6 +3,7 @@ import { useState } from "react";
 import CreateEmployee from "../../components/createEmployeePage";
 import CreateConfirm from "../../components/createConfirm";
 import Succeeded from "../../components/succeeded";
+import TopPage from "../../components/topPage";
 
 const Employee = () => {
   // エラーstate、更新関数の設定
@@ -16,6 +17,7 @@ const Employee = () => {
 
   return (
     <>
+      {pageState === "topPage" && <TopPage />}
       {pageState === "create" && <CreateEmployee errorStatus={errorStatus} />}
       {pageState === "confirm" && (
         <CreateConfirm onSaveError={handleSaveError} />
