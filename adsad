@@ -1,0 +1,17 @@
+[33mcommit 22263bbc80347a1e96f5c57cc4e8027dab9edc88[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mregister[m[33m, [m[1;31morigin/register[m[33m)[m
+Author: Kazuta Makino <kazuta.makino@growship.com>
+Date:   Tue Jul 2 13:08:43 2024 +0900
+
+    登録機能作成
+
+[33mcommit f6351c9d3c011e7e23953a6b515ce233d3fa7a7c[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/dev[m[33m, [m[1;32mmaster[m[33m, [m[1;32mdev[m[33m)[m
+Author: Kazuta Makino <kazuta.makino@growship.com>
+Date:   Fri Jun 28 14:35:48 2024 +0900
+
+    main
+
+[33mcommit 4c3bcb4ea3042b747254c9e0b7718cc8652256c7[m
+Author: Kazuta Makino <kazuta.makino@growship.com>
+Date:   Fri Jun 28 11:09:20 2024 +0900
+
+    Initial commit from Create Next App
