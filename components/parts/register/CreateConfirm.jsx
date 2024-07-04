@@ -22,12 +22,10 @@ const CreateConfirm = ({ onSaveError }) => {
       if (response.status === 200) {
         onSaveError(response.status);
         setPageState("succeeded");
-        console.log(response.status)
+
       } else {
         onSaveError(response.status);
         setPageState("create");
-        console.log(response.status)
-
       }
     } catch (error) {
       if (error.response && error.response.status) {

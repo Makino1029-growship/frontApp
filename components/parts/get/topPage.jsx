@@ -32,7 +32,6 @@ const TopPage = ({ errorStatus, message }) => {
   };
 
   // 取得した社員情報の表示
-  console.log("top,", errorStatus);
   return (
     <>
       {/* {errorStatus == 200 && ( */}

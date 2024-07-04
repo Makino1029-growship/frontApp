@@ -49,7 +49,6 @@ const CreateEmployee = (errorStatus) => {
     }
 
     // バリデーション（nullチェック）
-    console.log("employeeData.degree:", employeeData.degree);
     if (
       employeeData.employeeNum !== "" &&
       employeeData.name !== "" &&
