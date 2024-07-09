@@ -45,13 +45,11 @@ const Table = ({ items }) => {
 
       if (response.status === 200) {
         setErrorStatus(response.status);
-      } else {
-      }
+      } 
     } catch (error) {
       if (error.response && error.response.status) {
         setErrorStatus(error.response.status);
-      } else {
-      }
+      } 
     }
   };
 
