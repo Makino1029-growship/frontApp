@@ -4,7 +4,7 @@ const CommonContext = createContext();
 
 const CommonProvider = ({ children }) => {
   const [errorStatus, setErrorStatus] = useState("init");
-
+  const [selectedIdState, setSelectedIdState] = useState();
   const [employeeData, setEmployeeData] = useState({
     employeeNum: "",
     name: "",
@@ -12,12 +12,14 @@ const CommonProvider = ({ children }) => {
     tel: "",
     degree: "",
   });
-  
+
   const value = {
     errorStatus,
     setErrorStatus,
     employeeData,
     setEmployeeData,
+    selectedIdState,
+    setSelectedIdState,
   };
 
   return (

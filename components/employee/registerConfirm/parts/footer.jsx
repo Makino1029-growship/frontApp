@@ -74,7 +74,7 @@ const Footer = () => {
         }}
         onClick={handleCreate}
       >
-        登録する
+        確認する
       </Button>
     </Box>
   );
