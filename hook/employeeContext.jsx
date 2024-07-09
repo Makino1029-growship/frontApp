@@ -21,8 +21,9 @@ const CreateProvider = ({ children }) => {
     degree: "",
   });
 
+  
   // ページstateの宣言 初期値は新規登録ページに設定（後で変更予定）
-  const [pageState, setPageState] = useState("topPage");
+  // const [pageState, setPageState] = useState("");
 
   // 選択されたIDのstateと更新関数の宣言
   const [selectedIDState, setSelectedIDState] = useState("");
@@ -31,8 +32,8 @@ const CreateProvider = ({ children }) => {
   const value = {
     employeeData,
     setEmployeeData,
-    pageState,
-    setPageState,
+    // pageState,
+    // setPageState,
     selectedIDState,  
     setSelectedIDState ,
     detailEmployeeData,
