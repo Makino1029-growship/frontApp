@@ -2,7 +2,6 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/employee/toppage": "pages/employee/toppage.js",
-  "/employee/register": "pages/employee/register.js",
-  "/employee/detail": "pages/employee/detail.js"
+  "/employee/detail": "pages/employee/detail.js",
+  "/employee/toppage": "pages/employee/toppage.js"
 }
