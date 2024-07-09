@@ -1,4 +1,3 @@
-import { useCreate } from "../../../../hook/employeeContext";
 import { useCommon } from "../../../../hook/commonContext";
 import { useRegister } from "../../../../hook/registerContext";
 import { useEffect } from "react";
@@ -6,8 +5,7 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 
 const Footer = () => {
-  const { setPageState } = useCommon();
-  const { employeeData } = useCreate();
+  const { employeeData } = useCommon();
 
   const {
     inputNumErrorFlag,
@@ -15,6 +13,7 @@ const Footer = () => {
     inputNullFlag,
     setinputNullFlag,
     setclickFlag,
+    setPageState,
   } = useRegister();
 
   const handleSave = () => {
@@ -46,7 +45,7 @@ const Footer = () => {
       setinputNullFlag(false);
     }
   };
-
+  
   useEffect(() => {
     if (inputNullFlag && inputNumErrorFlag) {
       setPageState("confirm");

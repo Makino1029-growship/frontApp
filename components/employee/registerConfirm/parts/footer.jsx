@@ -1,4 +1,3 @@
-import { useCreate } from "../../../../hook/employeeContext";
 import { useCommon } from "../../../../hook/commonContext";
 import { useRegister } from "../../../../hook/registerContext";
 import Button from "@mui/material/Button";
@@ -6,9 +5,8 @@ import Box from "@mui/material/Box";
 import axios from "axios";
 
 const Footer = () => {
-  const { employeeData } = useCreate();
-  const { pageState, setPageState, setErrorStatus } = useCommon();
-  const { setinputNumErrorFlag, setinputNullFlag, setclickFlag } =
+  const { employeeData,  setErrorStatus } = useCommon();
+  const { setPageState, setinputNumErrorFlag, setinputNullFlag, setclickFlag } =
     useRegister();
 
   const handleReturn = () => {
@@ -25,23 +23,17 @@ const Footer = () => {
 
         employeeData
       );
-      console.log(employeeData);
-      console.log(response.status);
-
-      console.log("Here");
 
       if (response.status === 200) {
         setErrorStatus(response.status);
         setPageState("succeeded");
-        console.log("no1 passed");
-        console.log("pageState:", "succeeded");
+
       } else {
         setinputNumErrorFlag(false);
         setinputNullFlag(false);
         setclickFlag(false);
         setErrorStatus(response.status);
         setPageState("init");
-        console.log("no2 passed");
       }
     } catch (error) {
       if (error.response && error.response.status) {
@@ -50,11 +42,9 @@ const Footer = () => {
         setclickFlag(false);
         setErrorStatus(error.response.status);
         setPageState("init");
-        console.log("no3 passed");
       } else {
       }
     }
-    console.log("pageState:", pageState);
   };
 
   return (

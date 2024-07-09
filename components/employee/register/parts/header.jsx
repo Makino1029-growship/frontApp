@@ -1,5 +1,4 @@
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useCreate } from "../../../../hook/employeeContext";
 import { useCommon } from "../../../../hook/commonContext";
 import { useRegister } from "../../../../hook/registerContext";
 import Typography from "@mui/material/Typography";
@@ -15,9 +14,7 @@ const theme = createTheme({
 
 const Header = () => {
   const { inputNumErrorFlag, inputNullFlag, clickFlag } = useRegister();
-  const { employeeData } = useCreate();
-  const { errorStatus } = useCommon();
-  console.log("errorStatus==",errorStatus)
+  const { employeeData,  errorStatus } = useCommon();
 
   return (
     <>

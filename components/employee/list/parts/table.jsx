@@ -1,18 +1,15 @@
 import { List, ListItem, ListItemText } from "@mui/material";
-import { useCreate } from "../../../../hook/employeeContext";
 import { useCommon } from "../../../../hook/commonContext";
-import Pagination from "@mui/material/Pagination";
-import React, { useState } from "react";
+import { useRouter } from "next/router";
 import { Box } from "@mui/material";
-import { useEffect } from "react";
+import React, { useState } from "react";
+import Pagination from "@mui/material/Pagination";
 import axios from "axios";
 
 
 const Table = ({ items }) => {
   const ITEMS_PER_PAGE = 7;
-  const { selectedIDState, setSelectedIDState, setDetailEmployeeData } =
-    useCreate();
-  const { errorStatus, PageState, setPageState, setErrorStatus } = useCommon();
+  const { setEmployeeData, errorStatus, setErrorStatus } = useCommon();
 
   // ページ(社員情報一覧の各ページのどれを表示するか)をステイトで管理
   const [page, setPage] = useState(1);
@@ -22,24 +19,23 @@ const Table = ({ items }) => {
     setPage(value);
   };
 
+  const router = useRouter();
+
   // 関数の宣言：社員情報詳細（社員名）クリック時の処理
   const handleClick = async (id) => {
-    console.log("SelectedIDState:", selectedIDState);
-    setPageState("detail");
-    setSelectedIDState(id);
-    console.log("PageState:", PageState);
+    router.push("./detail");
 
     // リクエスト：IDに紐づいた社員情報を取得
 
     try {
-      const response = await axios.get(`http://localhost:8080/api/detaila`, {
+      const response = await axios.get(`http://localhost:8080/api/detail`, {
         params: {
-          id: selectedIDState,
+          id: {id}.id,
         },
       });
       const data = response.data;
 
-      setDetailEmployeeData({
+      setEmployeeData({
         employeeNum: data[0].employeeNum,
         name: data[0].name,
         address: data[0].address,
@@ -49,13 +45,11 @@ const Table = ({ items }) => {
 
       if (response.status === 200) {
         setErrorStatus(response.status);
-        console.log("passed Succeed");
       } else {
       }
     } catch (error) {
       if (error.response && error.response.status) {
         setErrorStatus(error.response.status);
-        console.log("passed Err");
       } else {
       }
     }

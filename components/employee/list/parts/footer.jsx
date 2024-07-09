@@ -1,22 +1,19 @@
-import Button from "@mui/material/Button";
 import { useRouter } from "next/router";
 import { useCommon } from "../../../../hook/commonContext"
-import { useCreate } from "../../../../hook/employeeContext";
+import Button from "@mui/material/Button";
 
 const Footer = () => {
+  const { setEmployeeData } = useCommon();
   const router = useRouter();
-  const { setPageState } = useCommon();
-  const { setEmployeeData} = useCreate();
-
+  
   const goToCreatePage = () => {
-    setPageState("init");
     setEmployeeData({
       employeeNum: "",
       name: "",
       address: "",
       tel: "",
       degree: "",
-    });
+    })
     router.push("./register");
   };
 

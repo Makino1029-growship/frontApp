@@ -1,9 +1,9 @@
-import { useCreate } from "../../../../hook/employeeContext";
+import { useCommon } from "../../../../hook/commonContext";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 
 const Table = () => {
-  const { employeeData } = useCreate();
+  const { employeeData } = useCommon();
 
   return (
     <>

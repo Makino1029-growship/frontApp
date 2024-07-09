@@ -1,13 +1,13 @@
 import { degreeOptions } from "../../../../constant/degreeOption";
-import { useCreate } from "../../../../hook/employeeContext";
+import { useCommon } from "../../../../hook/commonContext";
 import { useState } from "react";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 
 const Table = () => {
-  const { employeeData, setEmployeeData } = useCreate();
-  const [inputValue, setInputValue] = useState("");
+  const { employeeData, setEmployeeData } = useCommon();
+  const [ inputValue, setInputValue ] = useState("");
   const inputChange = (e, type) => {
     setEmployeeData({
       ...employeeData,

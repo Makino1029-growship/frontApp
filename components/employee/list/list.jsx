@@ -1,12 +1,9 @@
 import Header from "./parts/header";
 import Table from "./parts/table";
-import Footer from "./parts/footer";
 import { useCommon } from "../../../hook/commonContext";
+import Footer from "./parts/footer";
 
 const List = ({ message }) => {
-  const { errorStatus } = useCommon();
-
-  console.log("hi:",errorStatus)
   return (
     <>
       <Header />

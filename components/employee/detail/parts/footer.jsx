@@ -1,13 +1,17 @@
 import { useCommon } from "../../../../hook/commonContext";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import { useRouter } from "next/router";
 
 const Footer = () => {
-  const { errorStatus, setPageState } = useCommon();
+  const { errorStatus } = useCommon();
+
+  const router = useRouter();
 
   // 戻るボタン押下時の処理
   const handleReturn = () => {
-    setPageState("init");
+    router.push("./toppage");
+
   };
 
   // ※未設定　編集ボタン押下時の処理

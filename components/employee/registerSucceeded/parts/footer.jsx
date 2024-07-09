@@ -1,12 +1,9 @@
+import { useRouter } from "next/router";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
-import { useRouter } from "next/router";
-import { useCommon } from "../../../../hook/commonContext";
 
 const Footer = () => {
   const router = useRouter();
-  const { setPageState } = useCommon();
-
   const goToTopPage = () => {
     router.push("./toppage");
   };
