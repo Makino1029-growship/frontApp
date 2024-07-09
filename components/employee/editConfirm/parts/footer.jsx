@@ -6,7 +6,7 @@ import axios from "axios";
 
 const Footer = () => {
   const { employeeData, setErrorStatus, selectedIdState } = useCommon();
-  const { setPageState, setinputNumErrorFlag, setinputNullFlag, setclickFlag } =
+  const { pageState, setPageState, setinputNumErrorFlag, setinputNullFlag, setclickFlag } =
     useEdit();
 
   const handleReturn = () => {
@@ -18,31 +18,35 @@ const Footer = () => {
 
   const handleUpdate = async () => {
     try {
-      console.log("Passed handleUpdate try");
-      console.log("employeeData:",employeeData)
       const response = await axios.put(`http://localhost:8080/api/update/`, {
         id: selectedIdState,
         newData: employeeData,
       });
 
       if (response.status === 200) {
+        setPageState("succeeded");
         setErrorStatus(response.status);
-        setPageState("editSucceeded");
       } else {
+        setinputNumErrorFlag(false);
+        setinputNullFlag(false);
+        setclickFlag(false);
+        setPageState("init");
         setErrorStatus(response.status);
-        setPageState("edit");
+
       }
-      console.log("Passed Succeed");
     } catch (error) {
       if (error.response && error.response.status) {
+        setinputNumErrorFlag(false);
+        setinputNullFlag(false);
+        setclickFlag(false);
+        setPageState("init");
         setErrorStatus(error.response.status);
-        setPageState("edit");
+
       } else {
+
       }
-      console.log("Passed ERR");
-      console.log(error)
     }
-    setPageState("succeeded");
+
   };
 
   return (

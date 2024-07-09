@@ -9,7 +9,7 @@ const Header = () => {
           textAlign: "left",
           mb: 2,
           fontSize: "1.5rem",
-          marginTop: "2rem",
+          marginTop: "4rem",
           marginBottom: "3rem",
         }}
       >

@@ -1,12 +1,12 @@
 import { useCommon } from "../../../../hook/commonContext";
 import { useEdit } from "../../../../hook/editContext";
 import { useEffect } from "react";
+import { useRouter } from "next/router";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
-import { useRouter } from "next/router";
 
 const Footer = () => {
-  const { employeeData } = useCommon();
+  const { errorStatus, employeeData } = useCommon();
   const router = useRouter();
 
   const {
@@ -59,34 +59,40 @@ const Footer = () => {
     }
   }, [inputNullFlag, inputNumErrorFlag]);
 
-  return (
-    <Box sx={{ marginTop: "3rem", marginBottom: "15rem" }}>
+  return (<>
+    {errorStatus == 200 && (
+      
+      
+      <Box sx={{ marginTop: "3rem", marginBottom: "15rem" }}>
       <Button
-        variant="contained"
-        sx={{
-          position: "absolute",
-          right: 300,
-          fontSize: "1.0rem",
-          width: "15%",
-        }}
-        onClick={handleReturn}
+      variant="contained"
+      sx={{
+        position: "absolute",
+        right: 400,
+        fontSize: "1.2rem",
+        width: "15%",
+      }}
+      onClick={handleReturn}
       >
-        戻る
+      戻る
       </Button>
+      
+      <Button
+      variant="contained"
+      sx={{
+        position: "absolute",
+        right: 170,
+        fontSize: "1.2rem",
+        width: "15%",
+      }}
+      onClick={handleSave}
+      >
+      確認する
+      </Button>
+      </Box>
+    )}
 
-      <Button
-        variant="contained"
-        sx={{
-          position: "absolute",
-          right: 170,
-          fontSize: "1.0rem",
-          width: "15%",
-        }}
-        onClick={handleSave}
-      >
-        確認する
-      </Button>
-    </Box>
+    </>
   );
 };
 

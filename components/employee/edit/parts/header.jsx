@@ -44,7 +44,7 @@ const Header = () => {
               >
                 <ThemeProvider theme={theme}>
                   <Typography variant="p" color="primary">
-                    エラーが発生しました。お手数ですが再度登録してください。
+                    エラーが発生しました。時間を置いて改めて実行してください。
                   </Typography>
                 </ThemeProvider>
               </Box>

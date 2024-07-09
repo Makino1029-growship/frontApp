@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 
 const Footer = () => {
-  const { errorStatus, selectedIdState,setEmployeeData } = useCommon();
+  const { errorStatus, selectedIdState,setEmployeeData,setErrorStatus } = useCommon();
 
   const router = useRouter();
 
@@ -51,13 +51,13 @@ const Footer = () => {
     <>
       {/* 戻るボタン */}
       {errorStatus == 200 && (
-        <Box sx={{ marginTop: "3.7rem", marginBottom: "15rem" }}>
+        <Box sx={{ marginTop: "3.0rem", marginBottom: "15rem" }}>
           <Button
             variant="contained"
             sx={{
               position: "absolute",
               right: 400,
-              fontSize: "1.0rem",
+              fontSize: "1.2rem",
               width: "15%",
             }}
             onClick={handleReturn}
@@ -71,7 +71,7 @@ const Footer = () => {
             sx={{
               position: "absolute",
               right: 170,
-              fontSize: "1.0rem",
+              fontSize: "1.2rem",
               width: "15%",
             }}
             onClick={handleEdit}

@@ -59,7 +59,7 @@ const Footer = () => {
         sx={{
           position: "absolute",
           right: 170,
-          fontSize: "1.0rem",
+          fontSize: "1.2rem",
           width: "15%",
         }}
         onClick={handleSave}
