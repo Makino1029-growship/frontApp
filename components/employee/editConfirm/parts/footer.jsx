@@ -1,13 +1,13 @@
 import { useCommon } from "../../../../hook/commonContext";
-import { useRegister } from "../../../../hook/registerContext";
+import { useEdit } from "../../../../hook/editContext";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import axios from "axios";
 
 const Footer = () => {
-  const { employeeData,  setErrorStatus } = useCommon();
+  const { employeeData, setErrorStatus, selectedIdState } = useCommon();
   const { setPageState, setinputNumErrorFlag, setinputNullFlag, setclickFlag } =
-    useRegister();
+    useEdit();
 
   const handleReturn = () => {
     setinputNumErrorFlag(false);
@@ -16,35 +16,33 @@ const Footer = () => {
     setPageState("init");
   };
 
-  const handleCreate = async () => {
+  const handleUpdate = async () => {
     try {
-      const response = await axios.post(
-        "http://localhost:8080/api/create",
-
-        employeeData
-      );
+      console.log("Passed handleUpdate try");
+      console.log("employeeData:",employeeData)
+      const response = await axios.put(`http://localhost:8080/api/update/`, {
+        id: selectedIdState,
+        newData: employeeData,
+      });
 
       if (response.status === 200) {
         setErrorStatus(response.status);
-        setPageState("succeeded");
-
+        setPageState("editSucceeded");
       } else {
-        setinputNumErrorFlag(false);
-        setinputNullFlag(false);
-        setclickFlag(false);
         setErrorStatus(response.status);
-        setPageState("init");
+        setPageState("edit");
       }
+      console.log("Passed Succeed");
     } catch (error) {
       if (error.response && error.response.status) {
-        setinputNumErrorFlag(false);
-        setinputNullFlag(false);
-        setclickFlag(false);
         setErrorStatus(error.response.status);
-        setPageState("init");
+        setPageState("edit");
       } else {
       }
+      console.log("Passed ERR");
+      console.log(error)
     }
+    setPageState("succeeded");
   };
 
   return (
@@ -72,9 +70,9 @@ const Footer = () => {
           fontSize: "1.2rem",
           width: "15%",
         }}
-        onClick={handleCreate}
+        onClick={handleUpdate}
       >
-        確認する
+        保存する
       </Button>
     </Box>
   );

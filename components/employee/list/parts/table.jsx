@@ -9,7 +9,7 @@ import axios from "axios";
 
 const Table = ({ items }) => {
   const ITEMS_PER_PAGE = 7;
-  const { setEmployeeData, errorStatus, setErrorStatus } = useCommon();
+  const { setEmployeeData, errorStatus, setErrorStatus,setSelectedIdState } = useCommon();
 
   // ページ(社員情報一覧の各ページのどれを表示するか)をステイトで管理
   const [page, setPage] = useState(1);
@@ -23,6 +23,7 @@ const Table = ({ items }) => {
 
   // 関数の宣言：社員情報詳細（社員名）クリック時の処理
   const handleClick = async (id) => {
+    setSelectedIdState(id)
     router.push("./detail");
 
     // リクエスト：IDに紐づいた社員情報を取得
