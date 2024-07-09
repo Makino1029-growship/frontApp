@@ -14,7 +14,7 @@ const theme = createTheme({
 
 const Header = () => {
   const { inputNumErrorFlag, inputNullFlag, clickFlag } = useEdit();
-  const { employeeData,  errorStatus } = useCommon();
+  const { employeeData, errorStatus } = useCommon();
 
   return (
     <>
@@ -33,22 +33,21 @@ const Header = () => {
       {/* システムエラー発生時のメッセージ　propsで受け取ったエラーステータスで表示/非表示を管理 */}
       <Box sx={{ textAlign: "center" }}>
         <Box sx={{ marginBottom: "1rem" }}>
-          {errorStatus !== 200 &&
-            errorStatus !== "init" && (
-              <Box
-                sx={{
-                  textAlign: "center",
-                  marginBottom: "2rem",
-                  fontSize: "1.2rem",
-                }}
-              >
-                <ThemeProvider theme={theme}>
-                  <Typography variant="p" color="primary">
-                    エラーが発生しました。時間を置いて改めて実行してください。
-                  </Typography>
-                </ThemeProvider>
-              </Box>
-            )}
+          {errorStatus !== 200 && errorStatus !== "init" && (
+            <Box
+              sx={{
+                textAlign: "center",
+                marginBottom: "2rem",
+                fontSize: "1.2rem",
+              }}
+            >
+              <ThemeProvider theme={theme}>
+                <Typography variant="p" color="primary">
+                  エラーが発生しました。再度実行してください。
+                </Typography>
+              </ThemeProvider>
+            </Box>
+          )}
 
           {/* NULL項目がある場合のアラートメッセージ　フラグで表示/非表示を管理 */}
 

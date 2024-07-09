@@ -18,13 +18,11 @@ const Footer = () => {
     setPageState,
   } = useEdit();
 
-  const handleReturn = () =>{
+  const handleReturn = () => {
     router.push("./detail");
-
-  }
+  };
   const handleSave = () => {
     setclickFlag(true);
-
 
     //バリデーション（数値チェック）
     if (
@@ -52,46 +50,44 @@ const Footer = () => {
       setinputNullFlag(false);
     }
   };
-  
+
   useEffect(() => {
     if (inputNullFlag && inputNumErrorFlag) {
       setPageState("confirm");
     }
   }, [inputNullFlag, inputNumErrorFlag]);
 
-  return (<>
-    {errorStatus == 200 && (
-      
-      
-      <Box sx={{ marginTop: "3rem", marginBottom: "15rem" }}>
-      <Button
-      variant="contained"
-      sx={{
-        position: "absolute",
-        right: 400,
-        fontSize: "1.2rem",
-        width: "15%",
-      }}
-      onClick={handleReturn}
-      >
-      戻る
-      </Button>
-      
-      <Button
-      variant="contained"
-      sx={{
-        position: "absolute",
-        right: 170,
-        fontSize: "1.2rem",
-        width: "15%",
-      }}
-      onClick={handleSave}
-      >
-      確認する
-      </Button>
-      </Box>
-    )}
+  return (
+    <>
+      {errorStatus == 200 && (
+        <Box sx={{ marginTop: "3rem", marginBottom: "15rem" }}>
+          <Button
+            variant="contained"
+            sx={{
+              position: "absolute",
+              right: 400,
+              fontSize: "1.2rem",
+              width: "15%",
+            }}
+            onClick={handleReturn}
+          >
+            戻る
+          </Button>
 
+          <Button
+            variant="contained"
+            sx={{
+              position: "absolute",
+              right: 170,
+              fontSize: "1.2rem",
+              width: "15%",
+            }}
+            onClick={handleSave}
+          >
+            確認する
+          </Button>
+        </Box>
+      )}
     </>
   );
 };

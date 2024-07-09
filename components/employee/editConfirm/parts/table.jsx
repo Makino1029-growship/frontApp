@@ -4,7 +4,6 @@ import Box from "@mui/material/Box";
 
 const Table = () => {
   const { employeeData } = useCommon();
-
   return (
     <>
       <Box

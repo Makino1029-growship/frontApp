@@ -6,7 +6,7 @@ import axios from "axios";
 
 const Footer = () => {
   const { employeeData, setErrorStatus, selectedIdState } = useCommon();
-  const { pageState, setPageState, setinputNumErrorFlag, setinputNullFlag, setclickFlag } =
+  const { setPageState, setinputNumErrorFlag, setinputNullFlag, setclickFlag } =
     useEdit();
 
   const handleReturn = () => {
@@ -32,7 +32,6 @@ const Footer = () => {
         setclickFlag(false);
         setPageState("init");
         setErrorStatus(response.status);
-
       }
     } catch (error) {
       if (error.response && error.response.status) {
@@ -41,12 +40,9 @@ const Footer = () => {
         setclickFlag(false);
         setPageState("init");
         setErrorStatus(error.response.status);
-
       } else {
-
       }
     }
-
   };
 
   return (

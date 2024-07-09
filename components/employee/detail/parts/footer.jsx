@@ -1,7 +1,7 @@
 import { useCommon } from "../../../../hook/commonContext";
+import { useRouter } from "next/router";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import { useRouter } from "next/router";
 import axios from "axios";
 
 const Footer = () => {
@@ -15,7 +15,7 @@ const Footer = () => {
 
   };
 
-  // ※未設定　編集ボタン押下時の処理
+  // 編集ボタン押下時の処理
   const handleEdit = async() => {
     try {
       const response = await axios.get(`http://localhost:8080/api/detail`, {
@@ -45,7 +45,6 @@ const Footer = () => {
     router.push("./edit")
 
   };
-  
 
   return (
     <>
