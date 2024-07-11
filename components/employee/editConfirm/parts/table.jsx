@@ -11,7 +11,7 @@ const Table = () => {
           textAlign: "center",
           mb: 2,
           fontSize: "1.5rem",
-          marginTop: "2rem",
+          marginTop: "1rem",
           marginBottom: "3rem",
         }}
       >

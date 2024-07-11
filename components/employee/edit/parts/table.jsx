@@ -7,7 +7,7 @@ import Box from "@mui/material/Box";
 
 const Table = () => {
   const { errorStatus, employeeData, setEmployeeData } = useCommon();
-  const [ inputValue, setInputValue ] = useState("");
+  const [inputValue, setInputValue] = useState("");
   const inputChange = (e, type) => {
     setEmployeeData({
       ...employeeData,

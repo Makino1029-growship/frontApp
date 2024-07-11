@@ -9,21 +9,17 @@ const Footer = () => {
   };
 
   return (
-    <Box sx={{ textAlign: "center" }}>
-      <Box sx={{ marginTop: "3rem" }}>
-        <Button
-          variant="contained"
-          sx={{
-            position: "absolute",
-            right: 500,
-            fontSize: "1.0rem",
-            width: "20%",
-          }}
-          onClick={goToTopPage}
-        >
-          TOPページに戻る
-        </Button>
-      </Box>
+    <Box sx={{ textAlign: "center", marginTop: "3rem" }}>
+      <Button
+        variant="contained"
+        sx={{
+          fontSize: "1.0rem",
+          width: "20%",
+        }}
+        onClick={goToTopPage}
+      >
+        TOPページに戻る
+      </Button>
     </Box>
   );
 };
