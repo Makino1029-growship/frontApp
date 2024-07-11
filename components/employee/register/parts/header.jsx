@@ -3,6 +3,8 @@ import { useCommon } from "../../../../hook/commonContext";
 import { useRegister } from "../../../../hook/registerContext";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import { CssBaseline, AppBar, Toolbar } from "@mui/material";
+import Divider from "@mui/material/Divider";
 
 const theme = createTheme({
   palette: {
@@ -14,41 +16,62 @@ const theme = createTheme({
 
 const Header = () => {
   const { inputNumErrorFlag, inputNullFlag, clickFlag } = useRegister();
-  const { employeeData,  errorStatus } = useCommon();
+  const { employeeData, errorStatus } = useCommon();
 
   return (
     <>
-      <Box
-        sx={{
-          textAlign: "left",
-          mb: 2,
-          fontSize: "1.5rem",
-          marginTop: "4rem",
-          marginBottom: "3rem",
-        }}
-      >
-        <Typography variant="h4">▶社員情報新規登録</Typography>
-      </Box>
+      <ThemeProvider theme={theme}>
+        <CssBaseline /> {/* デフォルトのCSSをリセット */}
+        <Box sx={{ display: "flex", flexDirection: "column" }}>
+          {/* AppBar */}
+          <AppBar
+            position="fixed"
+            sx={{
+              zIndex: theme.zIndex.drawer + 1,
+              backgroundColor: "#333333",
+              color: "#FFFFFF",
+            }}
+          >
+            <Toolbar>
+              <Typography variant="h6" noWrap>
+                社員情報管理システム
+              </Typography>
+            </Toolbar>
+          </AppBar>
+
+          {/* メインコンテンツエリア */}
+          <Box
+            component="main"
+            sx={{ flexGrow: 1, bgcolor: "background.default", p: 3 }}
+          >
+            <Toolbar />
+            <Typography variant="h5" gutterBottom sx={{ color: "#000000" }}>
+              社員情報新規登録
+            </Typography>
+            <Divider sx={{ width: "100%", my: 1 }} />
+            {/* 下記にさらにコンテンツを追加 */}
+          </Box>
+        </Box>
+      </ThemeProvider>
 
       {/* システムエラー発生時のメッセージ　propsで受け取ったエラーステータスで表示/非表示を管理 */}
       <Box sx={{ textAlign: "center" }}>
         <Box sx={{ marginBottom: "1rem" }}>
-          {errorStatus !== 200 &&
-            errorStatus !== "init" && (
-              <Box
-                sx={{
-                  textAlign: "center",
-                  marginBottom: "2rem",
-                  fontSize: "1.2rem",
-                }}
-              >
-                <ThemeProvider theme={theme}>
-                  <Typography variant="p" color="primary">
-                    エラーが発生しました。お手数ですが再度登録してください。
-                  </Typography>
-                </ThemeProvider>
-              </Box>
-            )}
+          {errorStatus !== 200 && errorStatus !== "init" && (
+            <Box
+              sx={{
+                textAlign: "center",
+                marginBottom: "2rem",
+                fontSize: "1.2rem",
+              }}
+            >
+              <ThemeProvider theme={theme}>
+                <Typography variant="p" color="primary">
+                  エラーが発生しました。お手数ですが再度登録してください。
+                </Typography>
+              </ThemeProvider>
+            </Box>
+          )}
 
           {/* NULL項目がある場合のアラートメッセージ　フラグで表示/非表示を管理 */}
 

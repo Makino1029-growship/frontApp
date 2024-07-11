@@ -54,9 +54,10 @@ const Footer = () => {
         variant="contained"
         sx={{
           position: "absolute",
-          right: 400,
-          fontSize: "1.2rem",
-          width: "15%",
+          right: 360,
+          fontSize: "1.0rem",
+          width: "150px", 
+          height: "40px",
         }}
         onClick={handleReturn}
       >
@@ -69,12 +70,13 @@ const Footer = () => {
         sx={{
           position: "absolute",
           right: 170,
-          fontSize: "1.2rem",
-          width: "15%",
+          fontSize: "1.0rem",
+          width: "150px", 
+          height: "40px",
         }}
         onClick={handleCreate}
       >
-        確認する
+        保存する
       </Button>
     </Box>
   );

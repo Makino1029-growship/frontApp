@@ -4,9 +4,11 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
+import axios from "axios";
 
 const Footer = () => {
-  const { errorStatus, employeeData } = useCommon();
+  const { selectedIdState, errorStatus, employeeData, setErrorStatus } =
+    useCommon();
   const router = useRouter();
 
   const {
@@ -18,7 +20,31 @@ const Footer = () => {
     setPageState,
   } = useEdit();
 
-  const handleReturn = () => {
+  const handleReturn = async () => {
+    try {
+      const response = await axios.get(`http://localhost:8080/api/detail`, {
+        params: {
+          id: selectedIdState,
+        },
+      });
+      const data = response.data;
+
+      setEmployeeData({
+        employeeNum: data[0].employeeNum,
+        name: data[0].name,
+        address: data[0].address,
+        tel: data[0].tel,
+        degree: data[0].degree,
+      });
+
+      if (response.status === 200) {
+        setErrorStatus(response.status);
+      }
+    } catch (error) {
+      if (error.response && error.response.status) {
+        setErrorStatus(error.response.status);
+      }
+    }
     router.push("./detail");
   };
   const handleSave = () => {
@@ -65,9 +91,10 @@ const Footer = () => {
             variant="contained"
             sx={{
               position: "absolute",
-              right: 400,
-              fontSize: "1.2rem",
-              width: "15%",
+              right: 360,
+              fontSize: "1.0rem",
+              width: "150px",
+              height: "40px",
             }}
             onClick={handleReturn}
           >
@@ -79,8 +106,9 @@ const Footer = () => {
             sx={{
               position: "absolute",
               right: 170,
-              fontSize: "1.2rem",
-              width: "15%",
+              fontSize: "1.0rem",
+              width: "150px",
+              height: "40px",
             }}
             onClick={handleSave}
           >
